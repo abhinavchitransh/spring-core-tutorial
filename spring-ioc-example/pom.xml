@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.javaguides.spring</groupId>
 	<artifactId>spring-ioc-example</artifactId>
@@ -8,7 +8,11 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
+		<dependency.check.report.dir>${project.build.directory}/dependency-check</dependency.check.report.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sonar.host.url>http://localhost:9000/</sonar.host.url>
+		<sonar.dependencyCheck.reportPath>${dependency.check.report.dir}/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
+		<sonar.dependencyCheck.htmlReportPath>${dependency.check.report.dir}/dependency-check-report.html</sonar.dependencyCheck.htmlReportPath>
 	</properties>
 
 	<dependencies>
@@ -16,7 +20,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>5.1.0.RELEASE</version>
+			<version>5.1.7.RELEASE</version>
 		</dependency>
 
 	</dependencies>
@@ -29,6 +33,22 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.6.0.1398</version>
+			</plugin>
+			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-maven</artifactId>
+				<version>5.0.0-M3</version>
+				<configuration>
+					<format>ALL</format>
+					<outputDirectory>${dependency.check.report.dir}</outputDirectory>
+					<cveValidForHours>12</cveValidForHours>
+					<failBuildOnCVSS>4</failBuildOnCVSS>
 				</configuration>
 			</plugin>
 		</plugins>
