@@ -48,7 +48,7 @@
 					<format>ALL</format>
 					<outputDirectory>${dependency.check.report.dir}</outputDirectory>
 					<cveValidForHours>12</cveValidForHours>
-					<failBuildOnCVSS>4</failBuildOnCVSS>
+					<failBuildOnCVSS>8</failBuildOnCVSS>
 				</configuration>
 			</plugin>
 		</plugins>
